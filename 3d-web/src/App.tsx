@@ -1,12 +1,20 @@
 import './App.css';
-import { Box } from '@react-three/drei'
-import { RigidBody } from '@react-three/rapier'
-import { Canvas } from '@react-three/fiber';
+import { Canvas, useLoader } from '@react-three/fiber';
 import { Suspense } from 'react';
 import { Physics } from '@react-three/rapier';
 import { OrbitControls } from '@react-three/drei';
+import WallPanel from './components/WallPanel';
+import pattern from './assets/glitch-wall.jpeg';
+import { RepeatWrapping, TextureLoader } from 'three';
+
 
 function App() {
+  const textureRepeat= [4, 4];
+  const texture = useLoader(TextureLoader, pattern);
+  texture.wrapS = RepeatWrapping;
+  texture.wrapT = RepeatWrapping;
+  texture.repeat.set(textureRepeat[0], textureRepeat[1]);
+
   return (
     <div 
       style={
@@ -30,11 +38,10 @@ function App() {
         <Physics debug> 1
           <ambientLight intensity={0.5} />
           <directionalLight position={[-10, 10, 0]} intensity={0.4} />
-          <RigidBody type='fixed'>
-            <Box position={[0, 0, 0]} args={[10, 1, 100]} >
-              <meshStandardMaterial color="lightGray" />
-            </Box>
-          </RigidBody>
+          <WallPanel position={[0, 0, 0]} args={[10, 1, 100]} color='white' />
+          <WallPanel position={[0, 10, 0]} args={[10, 1, 100]} color='white' />
+          <WallPanel position={[-5, 5, -5]} args={[1, 10, 110]} color='pink' texture={texture} />
+          <WallPanel position={[5, 5, -5]} args={[1, 10, 110]} color='pink' texture={texture}/>
           <OrbitControls />
         </Physics>
       </Suspense>
