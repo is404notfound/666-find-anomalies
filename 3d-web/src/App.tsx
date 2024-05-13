@@ -1,6 +1,6 @@
 import './App.css';
 import { Canvas, useLoader } from '@react-three/fiber';
-import { Suspense, useState } from 'react';
+import { Suspense } from 'react';
 import { Physics } from '@react-three/rapier';
 import WallPanel from './components/WallPanel';
 import pattern from './assets/glitch-wall.jpeg';
