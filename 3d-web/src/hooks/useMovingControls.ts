@@ -8,21 +8,30 @@ export default function useMovingControls() {
   const [isMovingBackward, setIsMovingBackward] = useState(false);
   const [isMovingLeft, setIsMovingLeft] = useState(false);
   const [isMovingRight, setIsMovingRight] = useState(false);
-  const acceleration = 0.1;
+  const acceleration = 0.3;
   const deceleration = 0.2;
-  const maxSpeed = 0.5;
+  const maxSpeed = 0.8;
+  const rotationSpeed = 0.05; // 시야 회전 속도 조절
+
+  const handleMouseMove = (event: MouseEvent) => {
+    const { movementX } = event;
+    camera.rotation.y -= movementX * rotationSpeed;
+  };
 
   useEffect(() => {
     document.addEventListener('keydown', handleKeyDown);
     document.addEventListener('keyup', handleKeyUp);
+    document.addEventListener('mousemove', handleMouseMove);
+
 
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
       document.removeEventListener('keyup', handleKeyUp);
+      document.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
 
-  useEffect(() => {
+  useFrame(() => {
     const decelerate = () => {
       if (!isMovingForward && !isMovingBackward) {
         setVelocity((prevVelocity) => ({
@@ -36,7 +45,7 @@ export default function useMovingControls() {
     const decelerateInterval = setInterval(decelerate, 1000 / 60);
 
     return () => clearInterval(decelerateInterval);
-  }, [isMovingForward, isMovingBackward]);
+  });
 
   useFrame(() => {
     let newVelocity = { ...velocity };
@@ -52,7 +61,7 @@ export default function useMovingControls() {
     setVelocity(newVelocity);
   });
 
-  const handleKeyDown = (event: any) => {
+  const handleKeyDown = (event: KeyboardEvent) => {
     switch (event.key) {
       case 'w':
         setIsMovingForward(true);
@@ -71,7 +80,7 @@ export default function useMovingControls() {
     }
   };
 
-  const handleKeyUp = (event: any) => {
+  const handleKeyUp = (event: KeyboardEvent) => {
     switch (event.key) {
       case 'w':
         setIsMovingForward(false);

@@ -1,12 +1,12 @@
 import { Box } from '@react-three/drei'
 import { RigidBody } from '@react-three/rapier'
-import { DoubleSide } from 'three';
+import { DoubleSide, Texture } from 'three';
 
 interface WallPanelProps {
     position: [number, number, number]
     , args: [number, number, number]
     , color?: string
-    , texture?: any
+    , texture?: Texture
 }
 
 function WallPanel({ position, args, color, texture }: WallPanelProps) {
