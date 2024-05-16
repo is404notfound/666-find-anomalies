@@ -1,12 +1,28 @@
-import { OrbitControls } from '@react-three/drei';
-import useMovingControls from '../hooks/useMovingControls';
+import { FirstPersonControls } from '@react-three/drei';
+import { useFrame } from '@react-three/fiber';
 
-export default function MovingControlPanel() {
-  useMovingControls();
+export interface JoystickData {
+  deltaX: number
+  , deltaY: number
+}
+
+export default function MovingControlPanel({
+  joystickData
+}
+  : {
+    joystickData: JoystickData
+  }) {
+  useFrame((state) => {
+    const { camera } = state;
+    const { deltaX, deltaY } = joystickData;
+
+    camera.position.x += deltaX * 0.3;
+    camera.position.z -= deltaY * 0.3;
+  });
 
   return (
     <>
-      <OrbitControls target={[0, 0, 100]} />
+      <FirstPersonControls movementSpeed={20} />
     </>
   );
 }
