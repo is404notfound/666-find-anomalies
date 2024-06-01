@@ -17,16 +17,17 @@ export default function MovingControlPanel({
   }) {
   const [isEnabled, setIsEnabled] = useState(true);
   const lastMoveTimeRef = useRef(Date.now());
+ 
 
-  const handleMouseMove = () => {
-    lastMoveTimeRef.current = Date.now();
-
-    if (!isEnabled) {
-      setIsEnabled(true);
-    }
-  };
 
   useEffect(() => {
+    const handleMouseMove = () => {
+      lastMoveTimeRef.current = Date.now();
+  
+      if (!isEnabled) {
+        setIsEnabled(true);
+      }
+    };
     window.addEventListener('mousemove', handleMouseMove);
 
     return () => {
@@ -50,6 +51,7 @@ export default function MovingControlPanel({
       setIsEnabled(false);
     }
   };
+
 
   useFrame((state) => {
     const { camera } = state;
