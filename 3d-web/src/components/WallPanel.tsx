@@ -12,10 +12,10 @@ interface WallPanelProps {
 function WallPanel({ position, args, color, texture }: WallPanelProps) {
 
   return (
-    <RigidBody type='fixed'>
+    <RigidBody type='fixed' collisionGroups={1}>
         <Box position={position} args={args}>
             { texture ? 
-            <meshStandardMaterial map={texture} roughness={0.75} metalness={0.5} side={DoubleSide} />
+            <meshStandardMaterial map={texture} roughness={0.75} metalness={0.5} side={DoubleSide}  />
             : <meshStandardMaterial color={color} />
             }   
         </Box>
