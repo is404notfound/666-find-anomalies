@@ -10,7 +10,7 @@ import { useTexture } from './hooks/useTexture';
 function App() {
   const [joystickData, setJoystickData] = useState<JoystickData>({ deltaX: 0, deltaY: 0 });
   const { wallTexture, floorTexture, topTexture } = useTexture();
-  
+
   return (
     <div
       style={
@@ -34,34 +34,34 @@ function App() {
         <Suspense fallback={null}>
           <Physics gravity={[0, 1, 0]}> 1
             <ambientLight intensity={0.5} />
-            <directionalLight position={[20, 20, 20]} intensity={3} />
+            <ambientLight intensity={1.5} />
             <MovingControlPanel joystickData={joystickData} />
 
             {/* Center */}
-            <WallPanel position={[0, -15, 0]} args={[80, 1, 100]} color='white' texture={floorTexture}/>
-            <WallPanel position={[0, 25, 0]} args={[80, 1, 100]} color='white'  texture={topTexture} />
+            <WallPanel position={[0, -15, 0]} args={[80, 1, 100]} color='white' texture={floorTexture} />
+            <WallPanel position={[0, 25, 0]} args={[80, 1, 100]} color='white' texture={topTexture} />
             <WallPanel position={[-40, 5, -40]} args={[1, 40, 180]} color='white' texture={wallTexture} />
             <WallPanel position={[40, 5, 40]} args={[1, 40, 180]} color='white' texture={wallTexture} />
 
             {/* Front */}
-            <WallPanel position={[-50, -15, 90]} args={[180, 1, 80]} color='white' texture={floorTexture}/>
-            <WallPanel position={[-50, 25, 90]} args={[180, 1, 80]} color='white' texture={topTexture}/>
+            <WallPanel position={[-50, -15, 90]} args={[180, 1, 80]} color='white' texture={floorTexture} />
+            <WallPanel position={[-50, 25, 90]} args={[180, 1, 80]} color='white' texture={topTexture} />
             <WallPanel position={[-130, 5, 50]} args={[180, 40, 1]} color='white' texture={wallTexture} />
             <WallPanel position={[-50, 5, 130]} args={[180, 40, 1]} color='white' texture={wallTexture} />
 
-            <WallPanel position={[-180, -15, 140]} args={[80, 1, 180]} color='white' texture={floorTexture}/>
-            <WallPanel position={[-180, 25, 140]} args={[80, 1, 180]} color='white' texture={topTexture}/>
+            <WallPanel position={[-180, -15, 140]} args={[80, 1, 180]} color='white' texture={floorTexture} />
+            <WallPanel position={[-180, 25, 140]} args={[80, 1, 180]} color='white' texture={topTexture} />
             <WallPanel position={[-220, 5, 140]} args={[1, 40, 180]} color='white' texture={wallTexture} />
             <WallPanel position={[-140, 5, 180]} args={[1, 40, 100]} color='white' texture={wallTexture} />
 
             {/* Back */}
-            <WallPanel position={[50, -15, -90]} args={[180, 1, 80]} color='white' texture={floorTexture}/>
-            <WallPanel position={[50, 25, -90]} args={[180, 1, 80]} color='white' texture={topTexture}/>
+            <WallPanel position={[50, -15, -90]} args={[180, 1, 80]} color='white' texture={floorTexture} />
+            <WallPanel position={[50, 25, -90]} args={[180, 1, 80]} color='white' texture={topTexture} />
             <WallPanel position={[130, 5, -50]} args={[180, 40, 1]} color='white' texture={wallTexture} />
             <WallPanel position={[50, 5, -130]} args={[180, 40, 1]} color='white' texture={wallTexture} />
 
-            <WallPanel position={[180, -15, -140]} args={[80, 1, 180]} color='white' texture={floorTexture}/>
-            <WallPanel position={[180, 25, -140]} args={[80, 1, 180]} color='white' texture={topTexture}/>
+            <WallPanel position={[180, -15, -140]} args={[80, 1, 180]} color='white' texture={floorTexture} />
+            <WallPanel position={[180, 25, -140]} args={[80, 1, 180]} color='white' texture={topTexture} />
             <WallPanel position={[220, 5, -140]} args={[1, 40, 180]} color='white' texture={wallTexture} />
             <WallPanel position={[140, 5, -180]} args={[1, 40, 100]} color='white' texture={wallTexture} />
 
