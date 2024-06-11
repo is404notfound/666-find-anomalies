@@ -1,8 +1,9 @@
 import { Joystick, JoystickShape } from 'react-joystick-component';
 import { IJoystickUpdateEvent } from 'react-joystick-component/build/lib/Joystick';
+import { JoystickData } from './MovingControlPanel';
 
 const VirtualJoystick = ({ onMove }: {
-  onMove: (data: any) => void
+  onMove: (data: JoystickData) => void
 }) => {
   const handleMove = (e: IJoystickUpdateEvent) => {
     const { x, y } = e;
