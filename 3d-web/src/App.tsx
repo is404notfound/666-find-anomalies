@@ -7,6 +7,7 @@ import MovingControlPanel, { JoystickData } from './components/MovingControlPane
 import Maps from './games/Maps';
 import Structures from './games/Structures';
 import { RecoilRoot } from 'recoil';
+import Notice from './components/Notice';
 
 function App() {
   const [joystickData, setJoystickData] = useState<JoystickData>({ deltaX: 0, deltaY: 0 });
@@ -25,6 +26,7 @@ function App() {
       }
     >
       <RecoilRoot>
+        <Notice />
         <Canvas
           shadows
           camera={{ fov: 90, far: 500, near: 1, position: [-7, 0, 50] }}
@@ -43,6 +45,7 @@ function App() {
         <VirtualJoystick onMove={setJoystickData} />
       </RecoilRoot>
     </div>
+
   );
 }
 
