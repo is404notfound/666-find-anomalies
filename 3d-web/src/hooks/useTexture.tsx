@@ -26,8 +26,8 @@ export function useTexture() {
     };
 
     const wallTexture = usePattern({ pattern: wallPattern, repeat: [3, 1], wrapping: 'repeat' });
-    const floorTexture = usePattern({ pattern: floorPattern, repeat: [4, 3], wrapping: 'repeat' });
-    const topTexture = usePattern({ pattern: topPattern, repeat: [1, 2], wrapping: 'clamp' });
+    const floorTexture = usePattern({ pattern: floorPattern, repeat: [1, 1], wrapping: 'repeat' });
+    const topTexture = usePattern({ pattern: topPattern, repeat: [1, 1], wrapping: 'clamp' });
 
     return { wallTexture, floorTexture, topTexture };
 };
