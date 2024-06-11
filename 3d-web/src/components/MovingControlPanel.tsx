@@ -45,8 +45,8 @@ export default function MovingControlPanel({
 
   const setCameraMovement = (camera: Camera) => {
     const { deltaX, deltaY } = joystickData;
-    const rotationSpeed = 0.02;
-    const movementSpeed = 0.5;
+    const rotationSpeed = 0.015;
+    const movementSpeed = 0.3;
 
     camera.rotation.y -= deltaX * rotationSpeed;
 
