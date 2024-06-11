@@ -5,7 +5,6 @@ import { JoystickData } from './MovingControlPanel';
 const VirtualJoystick = ({ onMove }: {
   onMove: (data: JoystickData) => void
 }) => {
-  
   const handleMove = (e: IJoystickUpdateEvent) => {
     const { x, y } = e;
     onMove({ deltaX: x || 0, deltaY: y || 0});
@@ -20,7 +19,7 @@ const VirtualJoystick = ({ onMove }: {
       style={{
         position: 'absolute',
         bottom: '10%',
-        left: '10%',
+        left: '50%',
         zIndex: 1,
       }}
     >
