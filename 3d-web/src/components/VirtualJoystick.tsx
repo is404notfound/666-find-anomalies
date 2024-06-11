@@ -24,7 +24,7 @@ const VirtualJoystick = ({ onMove }: {
     >
       <Joystick
         size={80}
-        baseColor="black"
+        baseColor="#aaf0d1"
         stickColor="gray"
         baseShape={JoystickShape.Square}
         move={handleMove}
