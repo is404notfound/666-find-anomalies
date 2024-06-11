@@ -1,16 +1,13 @@
 import './App.css';
-import { Canvas, useThree } from '@react-three/fiber';
-import { Suspense, useEffect, useState } from 'react';
+import { Canvas } from '@react-three/fiber';
+import { Suspense } from 'react';
 import { Physics } from '@react-three/rapier';
-import VirtualJoystick from './components/VirtualJoystick';
-import MovingControlPanel, { JoystickData } from './components/MovingControlPanel';
+import MovingControlPanel from './components/MovingControlPanel';
 import Maps from './games/Maps';
 import Structures from './games/Structures';
 import { RecoilRoot } from 'recoil';
 
 function App() {
-  const [joystickData, setJoystickData] = useState<JoystickData>({ deltaX: 0, deltaY: 0 });
-
   return (
     <div
       style={
@@ -34,7 +31,7 @@ function App() {
           <Suspense fallback={null}>
             <Physics gravity={[0, 1, 0]}> 1
               <ambientLight intensity={1.5} />
-              <MovingControlPanel joystickData={joystickData} />
+              <MovingControlPanel />
               <Maps />
               <Structures />
             </Physics>

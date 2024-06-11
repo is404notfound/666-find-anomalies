@@ -6,34 +6,14 @@ import { Camera } from 'three';
 import { useRecoilState } from 'recoil';
 import { downPortalState, gameStageState, upPortalState } from '../recoil/games';
 
-export interface JoystickData {
-  deltaX: number
-  , deltaY: number
-}
 
-export default function MovingControlPanel({
-  joystickData
-}
-  : {
-    joystickData: JoystickData
-  }) {
+export default function MovingControlPanel() {
   const lastMoveTimeRef = useRef(Date.now());
   const [stage, setStage] = useRecoilState(gameStageState);
   const [upPortal, setUpPortal] = useRecoilState(upPortalState);
   const [downPortal, setDownPortal] = useRecoilState(downPortalState);
 
   const handleMouseMove = () => lastMoveTimeRef.current = Date.now();
-
-  const setCameraMovement = (camera: Camera) => {
-    const { deltaX, deltaY } = joystickData;
-
-    // 카메라 이동
-    camera.position.x += deltaX * 0.3;
-    camera.position.z -= deltaY * 0.3;
-
-    // 카메라 높이
-    camera.position.y = 1.8;
-  };
 
   const setInPortal = (camera: Camera) => {
     const { x, z } = camera.position;
@@ -61,7 +41,7 @@ export default function MovingControlPanel({
   useFrame((state) => {
     const { camera } = state;
 
-    setCameraMovement(camera);
+    camera.position.y = 1.8;
     setInPortal(camera);
   });
 
