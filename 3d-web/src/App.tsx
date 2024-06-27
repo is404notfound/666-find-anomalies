@@ -31,6 +31,7 @@ function App() {
           shadows
           camera={{ fov: 90, far: 500, near: 1, position: [-7, 0, 50] }}
           style={{ flex: 1 }}
+          color='#330066'
         >
           <color attach="background" args={['#f0f0f0']} />
           <Suspense fallback={null}>
@@ -45,7 +46,6 @@ function App() {
         <VirtualJoystick onMove={setJoystickData} />
       </RecoilRoot>
     </div>
-
   );
 }
 
