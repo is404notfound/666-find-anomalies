@@ -5,9 +5,9 @@ import { useRecoilValue } from "recoil";
 import { gameStageState } from "../recoil/games";
 
 export default function Airplane() {
-  const inisialPosition = [0, 120, -300];
+  const INITIAL_POSITION = [0, 120, -300];
   const { nodes, materials } = useGLTF(AirplaneGLB);
-  const [position, setPosition] = useState(inisialPosition);
+  const [position, setPosition] = useState(INITIAL_POSITION);
   const gameStage = useRecoilValue(gameStageState);
 
   useEffect(() => {
@@ -19,7 +19,7 @@ export default function Airplane() {
   }, [position]);
 
   useEffect(() => {
-    setPosition(inisialPosition);
+    setPosition(INITIAL_POSITION); // eslint-disable-next-line
   }, [gameStage]);
 
   return (
