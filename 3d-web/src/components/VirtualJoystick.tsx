@@ -19,12 +19,13 @@ const VirtualJoystick = ({ onMove }: {
       style={{
         position: 'absolute',
         bottom: '10%',
-        zIndex: 1,
+        zIndex: 0,
+        opacity: 0.7
       }}
     >
       <Joystick
-        size={90}
-        baseColor="#aaf0d1"
+        size={80}
+        baseColor="#fff"
         stickColor="gray"
         baseShape={JoystickShape.Square}
         move={handleMove}

@@ -5,7 +5,7 @@ export default function Model(props) {
   const { nodes, materials } = useGLTF(LowPolyDino)
 
   return (
-    <group {...props} dispose={null} scale={40} position={[140,-10,-300]} rotation={[0, 3, 0]}>
+    <group {...props} dispose={null} scale={30} position={[140,-10,-300]} rotation={[0, 3, 0]}>
       <primitive object={nodes.Bone} />
       <primitive object={nodes.Bone001} />
       <group position={[-0.142, 0.032, 0.06]} scale={[0.609, 0.609, 1.042]}>
