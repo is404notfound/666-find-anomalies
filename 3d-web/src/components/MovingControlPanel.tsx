@@ -22,22 +22,25 @@ export default function MovingControlPanel({
 
   const setInPortal = (camera: Camera) => {
     const { x, z } = camera.position;
+    let xAdd = 0;
 
-    if (upPortal && x > 100) {
+    if (upPortal && z < -450) {
       setDownPortal(false);
-      camera.position.x = -0.8 * x;
-      camera.position.z = -0.8 * z;
+      xAdd = x - 385;
+      camera.position.x = -335 + xAdd;
+      camera.position.z = 521;
       setStage(stage + 1);
     }
 
-    if (downPortal && x < -100) {
+    if (downPortal && z > 450) {
       setUpPortal(false);
-      camera.position.x = -0.81 * x;
-      camera.position.z = -1 * z;
+      xAdd = x + 335;
+      camera.position.x = 385 + xAdd;
+      camera.position.z = -451;
       stage > 0 ? setStage(stage - 1) : setStage(0);
     }
 
-    if (x > -30 || x < 30) {
+    if (z > -130 && z < 130) {
       setUpPortal(true);
       setDownPortal(true);
     }
@@ -79,7 +82,7 @@ export default function MovingControlPanel({
     <>
       <RigidBody collisionGroups={1} position={[0, 0, 0]}>
         <FirstPersonControls
-          movementSpeed={25}
+          movementSpeed={50}
           lookSpeed={0.06}
           lookVertical={false}
         />

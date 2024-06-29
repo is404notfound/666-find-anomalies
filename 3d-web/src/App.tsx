@@ -29,14 +29,14 @@ function App() {
         <Notice />
         <Canvas
           shadows
-          camera={{ fov: 90, far: 500, near: 1, position: [-7, 0, 50] }}
+          camera={{ fov: 45, far: 1000, near: 1, position: [-3, 0, 145] }}
           style={{ flex: 1 }}
           color='#330066'
         >
           <color attach="background" args={['#f0f0f0']} />
           <Suspense fallback={null}>
             <Physics gravity={[0, 1, 0]}> 1
-              <ambientLight intensity={1.5} />
+              <ambientLight intensity={2} />
               <MovingControlPanel joystickData={joystickData} />
               <Maps />
               <Structures />
