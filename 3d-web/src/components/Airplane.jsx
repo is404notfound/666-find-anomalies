@@ -5,7 +5,7 @@ import { useRecoilValue } from "recoil";
 import { gameStageState } from "../recoil/games";
 
 export default function Airplane() {
-  const INITIAL_POSITION = [800, 120, -100];
+  const INITIAL_POSITION = [800, 240, -100];
   const { nodes, materials } = useGLTF(AirplaneGLB);
   const [position, setPosition] = useState(INITIAL_POSITION);
   const gameStage = useRecoilValue(gameStageState);
