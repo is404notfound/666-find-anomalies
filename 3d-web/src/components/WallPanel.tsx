@@ -4,14 +4,15 @@ import { RigidBody } from '@react-three/rapier'
 import { DoubleSide, Texture } from 'three';
 
 interface WallPanelProps {
-    position: [number, number, number]
-    , args: [number, number, number]
-    , color?: string
-    , texture?: Texture
-    , isCollision?: boolean
-  }
+  position: [number, number, number]
+  , args: [number, number, number]
+  , color?: string
+  , texture?: Texture
+  , isCollision?: boolean
+  , direction?: 'up' | 'down' | 'right' | 'left';
+}
 
-function WallPanel({ position, args, color, texture, isCollision = false }: WallPanelProps) {
+function WallPanel({ position, args, color, texture, isCollision = false, direction }: WallPanelProps) {
   const wallX = position[0];
   const wallZ = position[2];
   const wallWidth = args[0];
@@ -23,39 +24,31 @@ function WallPanel({ position, args, color, texture, isCollision = false }: Wall
     const { camera } = state;
     const { x, z } = camera.position;
 
-    const collisionRange = (
-      x > wallX - wallWidth / 2 &&
-      x < wallX + wallWidth / 2 &&
-      z > wallZ - wallDepth / 2 &&
-      z < wallZ + wallDepth / 2
-    );
+    const isRight = direction === 'right';
+    const isLeft = direction === 'left';
+    const isUp = direction === 'up';
+    const isDown = direction === 'down';
 
-    if (collisionRange) {
-      if (x > wallX) {
-        camera.position.x = wallX + 5;
-      } else if (x < wallX) {
-        console.log(2)
-        camera.position.x = wallX + 5;
-        camera.position.z = wallZ - 5;
-      } else if (z > wallZ) {
-        console.log(3)
-        camera.position.z = wallZ + 5;
-      } else if (z < wallZ) {
-        console.log(4)
-        camera.position.z = wallZ - 5;
-      }
+    if (isLeft && x < wallX) {
+      camera.position.x = wallX + 5;
+    } else if (isRight && x > wallX) {
+      camera.position.x = wallX - 5;
+    } else if (isUp && z > wallZ) {
+      camera.position.z = wallZ - 5;
+    } else if (isDown && z < wallZ) {
+      camera.position.z = wallZ + 5;
     }
   });
 
   return (
     <RigidBody type='fixed' collisionGroups={1}>
-        <Box position={position} args={args}>
-            { texture ? 
-            <meshStandardMaterial map={texture} roughness={0.75} metalness={0.5} side={DoubleSide}  />
-            : <meshStandardMaterial color={color} />
-            }   
+      <Box position={position} args={args}>
+        {texture ?
+          <meshStandardMaterial map={texture} roughness={0.75} metalness={0.5} side={DoubleSide} />
+          : <meshStandardMaterial color={color} />
+        }
 
-        </Box>
+      </Box>
     </RigidBody>
   );
 }
