@@ -1,7 +1,7 @@
 import { useRecoilValue } from "recoil";
 import Panel from "../components/Panel";
 import { gameStageState } from "../recoil/games";
-import Airplane from "../components/Airplane"
+// import Airplane from "../components/Airplane"
 import LowPolyDino from "../components/LowPolyDino";
 import UFO from "../components/UFO";
 import { useTexture } from "hooks/useTexture";
