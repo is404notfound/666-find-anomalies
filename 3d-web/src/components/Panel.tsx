@@ -8,8 +8,8 @@ interface PanelProps {
   , color?: string
   , texture?: Texture
   , content?: string | number
-  , textColor: string
-  , textPosition: [number, number, number]
+  , textColor?: string
+  , textPosition?: [number, number, number]
   , textScale?: [number, number, number]
 }
 
